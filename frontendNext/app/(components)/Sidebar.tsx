@@ -4,7 +4,7 @@ import React, {useState} from 'react'
 import { useAppDispatch, useAppSelector } from '@/app/redux'
 import Link from "next/link"
 import { usePathname } from 'next/navigation'
-import { setIsDarkMode, setIsSiderbarCollapsed } from '@/reduxstate/index'
+import { setIsSiderbarCollapsed } from '@/reduxstate/index'
 const Sidebar = () => {
     const [showProjects, setShowProjects] = useState(true);
     const [showPriority, setShowPriority] = useState(true);
@@ -92,7 +92,7 @@ const Sidebar = () => {
 
 interface SidebarlinkProps {
 	href : string;
-	icon : LucideIcon;
+	icon : any;
 	label : string; 
 }
 
