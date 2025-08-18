@@ -12,8 +12,11 @@ import (
 func GetProject(c * fiber.Ctx) error {
 	
 	var project []models.Project
-
-	if err:= database.DB.Find(&project).Error;err != nil {
+	var id = c.Query("projectId")
+	if id == "" {
+		return c.Status(400).JSON(fiber.Map{"message":"send a valid projectid broo"})
+	}
+if err:= database.DB.Where("project_id = ?",id).First(&project).Error;err != nil {
 		return c.Status(500).JSON(fiber.Map{"message":"error retrieving projectssssss"})
 	}
 //agr aa gya toh

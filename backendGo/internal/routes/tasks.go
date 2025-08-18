@@ -12,4 +12,5 @@ func TaskRoutes(app * fiber.App) {
 	task := app.Group("/tasks")
 	task.Get("/",handler.GetTasks)
 	task.Post("/", handler.CreateTask)
+	task.Patch("/:id/status",handler.UpdateTaskStatus)
 }
