@@ -24,16 +24,16 @@ func InitDB() {
 		log.Fatal("POSTGRES_URI is empty in .env")
 	}
 
-	DB, err = gorm.Open(postgres.Open(postgresURI), &gorm.Config{})
+	DB, err = gorm.Open(postgres.Open(postgresURI), &gorm.Config{
+DisableForeignKeyConstraintWhenMigrating: true,
+	})
 	if err != nil {
 		log.Fatalf("failed to connect to DB: %v", err)
 	}
 
-	// Optional: defer constraints
 	DB.Exec("SET CONSTRAINTS ALL DEFERRED")
-
-	// Correct migration order
-	err = DB.AutoMigrate(
+	// Correct migration order  : {{}}}}}
+ 	err = DB.AutoMigrate(
 		&models.Team{},
 		&models.User{},
 		&models.Project{},
