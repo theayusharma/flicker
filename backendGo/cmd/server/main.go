@@ -1,14 +1,45 @@
 package main
 
-import(
-	"log"
-	"github.com/gofiber/fiber/v2"
-	"backendGo/pkg/database"
+import (
 	"backendGo/internal/routes"
+	"backendGo/pkg/database"
+	"log"
+	"os"
+
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
+	// "github.com/joho/godotenv"
 )
 
 func main() {
 	app := fiber.New()
+	
+	url := os.Getenv("FRONT_URL")
+	// if url == "" {
+	// 	url = "http://localhost:3000"
+	// }
+
+  allowedOrigins := os.Getenv("ALLOWED_ORIGINS")
+    if allowedOrigins == "" {
+        allowedOrigins = url 
+    }
+    
+    allowedHeaders := os.Getenv("ALLOWED_HEADERS")
+    if allowedHeaders == "" {
+        allowedHeaders = "Origin,Content-Type,Accept"
+    }
+    
+    allowedMethods := os.Getenv("ALLOWED_METHODS")
+    if allowedMethods == "" {
+        allowedMethods = "GET,POST,PUT,DELETE"
+    }
+    
+    // Configure CORS
+    app.Use(cors.New(cors.Config{
+        AllowOrigins: allowedOrigins,
+        AllowHeaders: allowedHeaders,
+        AllowMethods: allowedMethods,
+    }))
 
 	app.Get("/", func(c * fiber.Ctx) error{
 		return c.SendString("hello go cat")
@@ -16,5 +47,10 @@ func main() {
 	routes.TaskRoutes(app)
 	routes.ProjectRoutes(app)
 	database.InitDB()
-	log.Fatal(app.Listen(":3001"))
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "3001"
+	}
+	log.Fatal(app.Listen(":" + port))
 }
