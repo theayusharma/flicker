@@ -13,35 +13,35 @@ import (
 
 func main() {
 	app := fiber.New()
-	
+
 	url := os.Getenv("FRONT_URL")
 	// if url == "" {
 	// 	url = "http://localhost:3000"
 	// }
 
-  allowedOrigins := os.Getenv("ALLOWED_ORIGINS")
-    if allowedOrigins == "" {
-        allowedOrigins = url 
-    }
-    
-    allowedHeaders := os.Getenv("ALLOWED_HEADERS")
-    if allowedHeaders == "" {
-        allowedHeaders = "Origin,Content-Type,Accept"
-    }
-    
-    allowedMethods := os.Getenv("ALLOWED_METHODS")
-    if allowedMethods == "" {
-        allowedMethods = "GET,POST,PUT,DELETE"
-    }
-    
-    // Configure CORS
-    app.Use(cors.New(cors.Config{
-        AllowOrigins: allowedOrigins,
-        AllowHeaders: allowedHeaders,
-        AllowMethods: allowedMethods,
-    }))
+	allowedOrigins := os.Getenv("ALLOWED_ORIGINS")
+	if allowedOrigins == "" {
+		allowedOrigins = url
+	}
 
-	app.Get("/", func(c * fiber.Ctx) error{
+	allowedHeaders := os.Getenv("ALLOWED_HEADERS")
+	if allowedHeaders == "" {
+		allowedHeaders = "Origin,Content-Type,Accept"
+	}
+
+	allowedMethods := os.Getenv("ALLOWED_METHODS")
+	if allowedMethods == "" {
+		allowedMethods = "GET,POST,PUT,DELETE,PATCH"
+	}
+
+	// Configure CORS
+	app.Use(cors.New(cors.Config{
+		AllowOrigins: allowedOrigins,
+		AllowHeaders: allowedHeaders,
+		AllowMethods: allowedMethods,
+	}))
+
+	app.Get("/", func(c *fiber.Ctx) error {
 		return c.SendString("hello go cat")
 	})
 	routes.TaskRoutes(app)
