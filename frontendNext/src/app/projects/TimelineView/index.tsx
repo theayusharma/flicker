@@ -7,12 +7,7 @@ type Props = {
 
 const TimeLineView = ({ id, setIsModalNewTaskOpen }: Props) => {
   return (
-    <div>
-      <div>
-        timeline
-      </div>
-      <TimeLine id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
-    </div>
+    <TimeLine id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen} />
   )
 }
 
