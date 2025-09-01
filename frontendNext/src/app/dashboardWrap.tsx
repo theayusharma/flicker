@@ -6,47 +6,37 @@ import StoreProvider, { useAppSelector } from '@/app/redux'
 
 //redux
 
-const DashboardLayout = ({children} : {children : React.ReactNode}) => {
+const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
   const isSiderbarCollapsed = useAppSelector((state) => state.global.isSiderbarCollapsed);
 
-  const isDarkMode = useAppSelector ((state) => state.global.isDarkMode);
-  
-
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add("dark")
-    } else {
-      document.documentElement.classList.remove("dark")
-    }
-  },[isDarkMode]);
-
   return (
     <div className='flex min-h-screen w-full bg-gray-50 text-gray-950'>
-    {/*hehe sidebar*/}
-    <Sidebar/>
-    <main className={`dark:bg-dark-bg flex w-full flex-col  bg-gray-50 
+      {/*hehe sidebar*/}
+      <Sidebar />
+      <main className={`dark:bg-zinc-800 flex w-full flex-col  bg-gray-50 
       
-      ${ isSiderbarCollapsed ? "" : "md:pl-64 "}
+      ${isSiderbarCollapsed ? "" : "md:pl-64 "}
       `}>
-    <Navbar/>{/*navbar and children*/}
-    {children}
-    </main>
+        <Navbar />{/*navbar and children*/}
+        {children}
+      </main>
 
     </div>
   )
 }
 
-const DashboardWrap = ({children} : {children : React.ReactNode}) => {
+const DashboardWrap = ({ children }: { children: React.ReactNode }) => {
   return (
-  <StoreProvider>
-    <DashboardLayout>
-      {children}
-    </DashboardLayout>
-  </StoreProvider>
+    <StoreProvider>
+      <DashboardLayout>
+        {children}
+      </DashboardLayout>
+    </StoreProvider>
 
-)}
+  )
+}
 
-export default DashboardWrap; 
+export default DashboardWrap;
 
-            
+
