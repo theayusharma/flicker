@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import DashboardWrap from "./dashboardWrap";
+import { ThemeProvider } from "@/components/theme-provider";
 
 
 export const metadata: Metadata = {
@@ -14,11 +15,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-      > <DashboardWrap> 
-        {children}
-        </DashboardWrap>
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <DashboardWrap>
+            {children}
+          </DashboardWrap>
+        </ThemeProvider>
       </body>
     </html>
   );
