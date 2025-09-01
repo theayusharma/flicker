@@ -32,7 +32,7 @@ const Boardview = ({ id, setIsModalNewTaskOpen }: BoardProps) => {
     updateTaskStatus({ taskId, status: backendStatus });
   }
 
-  const { data: tasks, isLoading, error } = useGetTasksQuery({ projectId: Number(1) });
+  const { data: tasks, isLoading, error } = useGetTasksQuery({ projectId: Number(id) });
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>An error occurred while fetching tasks: {JSON.stringify(error, null, 2)}</div>;
@@ -106,11 +106,11 @@ const TaskColumn = ({
           className="w-2 rounded-s-lg"
           style={{ backgroundColor: statusColor[status] }}
         />
-        <div className="flex w-full items-center justify-between rounded-e-lg bg-white px-5 py-4 dark:bg-dark-secondary">
+        <div className="flex w-full items-center justify-between rounded-e-lg bg-white px-5 py-4 dark:bg-zinc-900">
           <h3 className="flex items-center text-lg font-semibold dark:text-white">
-            {status}{" "}
+            {status}{"  "}
             <span
-              className="ml-2 inline-block rounded-full bg-gray-200 p-1 text-center text-sm leading-none dark:bg-dark-tertiary"
+              className="ml-2 inline-block rounded-full bg-gray-200 dark:bg-blue-200 dark:text-black p-1 text-center text-sm leading-none dark:bg-dark-tertiary "
               style={{ width: "1.5rem", height: "1.5rem" }}
             >
               {taskCount}
@@ -182,7 +182,7 @@ const Task = ({ task }: TaskProps) => {
     <div ref={(instance) => {
       drag(instance)
     }}
-      className={`mb-4 rounded-md bg-white shadow dark:bg-dark-secondary ${isDragging ? "opacity-50" : "opacity-100"}`}
+      className={`mb-4 rounded-md bg-white shadow dark:bg-zinc-900 ${isDragging ? "opacity-50" : "opacity-100"}`}
     >
       {task.attachments?.length ? (
         <Image
@@ -207,7 +207,7 @@ const Task = ({ task }: TaskProps) => {
             {task.Priority && <PriorityTag priority={task.Priority} />}
             <div className="flex gap-2">
               {taskTagsSplit.map((tag: string) => (
-                <div key={tag} className="rounded-full bg-blue-100 px-2 py-1 text-xs">
+                <div key={tag} className="rounded-full bg-blue-100 px-2 py-1 text-xs dark:bg-blue-500">
                   {tag.trim()}
                 </div>
               ))}
@@ -253,6 +253,10 @@ const Task = ({ task }: TaskProps) => {
 
           </div>
         </div>
+        {/* <div className="dark:bg-dark-tertiary m-2 p-2 bg-amber-600"> */}
+        {/*   hjfdsf */}
+        {/**/}
+        {/* </div> */}
       </div>
     </div>
   );
