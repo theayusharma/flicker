@@ -11,7 +11,7 @@ type ListProps = {
 
 const List = ({ id, setIsModalNewTaskOpen }: ListProps) => {
   const { data: tasks, error, isLoading } = useGetTasksQuery({
-    projectId: 1
+    projectId: Number(id)
   })
 
   if (isLoading) return <div>Loading...</div>;
