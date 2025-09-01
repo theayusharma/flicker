@@ -1,20 +1,20 @@
 import React from "react"
 type Props = {
   name: string;
-  buttonComponent? : any;
+  buttonComponent?: any;
   isSmallText?: boolean;
 }
 
 const Header = ({
-  name,buttonComponent,isSmallText = false
+  name, buttonComponent, isSmallText = false
 }: Props) => {
 
   return (
-    <div className="mb-5 flex w-full items-center justify-between" >
-      <h1 className={`${isSmallText ? "text-lg" : "text-2xl"} font-semibold  dark:text-white `}>
-      {name}
+    <div className="flex w-full 4xl justify-between" >
+      <h1 className={`sm:text-4xl text-3xl font-bold  dark:text-white `}>
+        {name}
       </h1>
-    {buttonComponent}
+      {buttonComponent}
     </div>
 
   )

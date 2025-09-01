@@ -6,17 +6,87 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --dark-bg: #101214;
+  --dark-secondary: #1d1f21;
+  --dark-tertiary: #3b3d40;
+  --blue-primary: #0275ff;
+  --stroke-dark: #2d3135;
 }
 
 *,*::before,*::after{
     box-size : border-box;
 }
 
-html, body, #root, .app{
-    height : 100%;
-    width : 100%;
+/* html, body, #root, .app{ */
+/*     height : 100%; */
+/*     width : 100%; */
+/**/
+/*     @apply text-sm bg-white dark:bg-black; */
+/* 	 */
+/* } */
+/**/
 
-    @apply text-sm bg-white dark:bg-black;
-	
-
+html,
+body,
+#root,
+.app {
+  height: 100%;
+  width: 100%;
+  @apply text-sm;
+  @apply bg-white;
+  @apply dark:bg-black;
 }
+
+/* TIMELINE STYLING - Using standard Tailwind classes */
+.timeline ._3_ygE {
+  @apply rounded-tl-md border border-r-0 border-gray-200 dark:border-gray-600;
+}
+.timeline ._2eZzQ {
+  @apply border-gray-200 dark:border-gray-600;
+}
+.timeline ._2dZTy {
+  @apply fill-white dark:fill-gray-800;
+}
+.timeline ._2dZTy:nth-child(even) {
+  @apply fill-gray-50 dark:fill-gray-700;
+}
+.timeline ._35nLX {
+  @apply fill-white stroke-gray-200 dark:fill-gray-800 dark:stroke-gray-600;
+}
+.timeline ._9w8d5 {
+  @apply fill-gray-900 dark:fill-white;
+}
+.timeline ._34SS0 {
+  @apply bg-white dark:bg-gray-800;
+}
+.timeline ._34SS0:nth-of-type(even) {
+  @apply bg-gray-50 dark:bg-gray-700;
+}
+.timeline ._RuwuK,
+.timeline ._3rUKi,
+.timeline ._1rLuZ {
+  @apply stroke-gray-200 dark:stroke-gray-600;
+}
+.timeline ._3ZbQT {
+  @apply border-l-0 border-gray-200 dark:border-gray-600;
+}
+.timeline ._3T42e {
+  @apply bg-white dark:bg-gray-900;
+}
+.timeline ._29NTg {
+  @apply dark:text-gray-400;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+.timeline ._nI1Xw, ._3lLk3{
+  @apply text-black dark:text-white text-wrap text-left
+}
+
+.timeline ._WuQ0f{
+  @apply text-black dark:text-white text-wrap text-center
+}
+
