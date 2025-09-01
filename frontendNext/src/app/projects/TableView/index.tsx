@@ -1,0 +1,93 @@
+import { useGetTasksQuery } from "@/app/reduxstate/api";
+import Header from "@/components/Header";
+import React from "react"
+import { DataGrid, GridColDef } from '@mui/x-data-grid'
+import { columnsStateInitializer } from "@mui/x-data-grid/internals";
+import { dataGridCN, dataGridSx } from "@/app/lib/utils";
+import { useTheme } from "next-themes";
+type Props = {
+  id: string;
+  setIsModalNewTaskOpen: (isOpen: boolean) => void
+}
+const columns: GridColDef[] = [
+  {
+    field: "Title",
+    headerName: "Title",
+    width: 100
+  },
+  {
+    field: "Description",
+    headerName: "Description",
+    width: 200
+  },
+  {
+    field: "status",
+    headerName: "Status",
+    width: 100,
+    renderCell: (params) => (
+      <span className="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold text-green-800 leading-5">
+        {params.value}
+      </span>
+    )
+  },
+  {
+    field: "Priority",
+    headerName: "Priority",
+    width: 75
+  },
+  {
+    field: "Tags",
+    headerName: "Tags",
+    width: 100
+  },
+  {
+    field: "StartDate",
+    headerName: "StartDate",
+    width: 100
+  },
+  {
+    field: "DueDate",
+    headerName: "DueDate",
+    width: 100
+  },
+  {
+    field: "Author",
+    headerName: "Author",
+    width: 130,
+    renderCell: (params) => params.value.Username || "Unknown"
+  },
+  {
+    field: "Assignee",
+    headerName: "Assignee",
+    width: 150,
+    renderCell: (params) => params.value.Username || "Unknown"
+  },
+]
+
+const TableView = ({ id, setIsModalNewTaskOpen }: Props) => {
+
+  const { theme } = useTheme();
+  const { data: tasks, error, isLoading } = useGetTasksQuery({
+    projectId: Number(id)
+  })
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>An error occurred while fetching tasks: {JSON.stringify(error, null, 2)}</div>;
+
+  return (
+    <div className="h-[540px] w-full pc-4 pb-8 xl:px-6">
+      <div className="pt-5">
+        <Header name="Table" isSmallText />
+      </div>
+      <DataGrid
+        rows={tasks || []}
+        columns={columns}
+        className={dataGridCN}
+        sx={dataGridSx(theme === "dark" ? true : false)}
+      />
+
+    </div>
+  )
+}
+
+export default TableView
