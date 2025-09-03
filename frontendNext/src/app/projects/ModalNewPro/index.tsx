@@ -27,9 +27,9 @@ const ModalNewProject = ({
     console.log(fStartDate)
     await createProject({
       name: ProjectName,
-      Description,
-      StartDate : fStartDate,
-      EndDate : fDueDate,
+      description: Description,
+      startdate: fStartDate,
+      enddate: fDueDate,
     })
   }
   const isFormValid = () => {

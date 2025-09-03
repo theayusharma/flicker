@@ -5,7 +5,7 @@ type Props = {
   activeTab: string;
   setActiveTab: (tabName: string) => void
 };
-import ModalNewProject from "./ModalNew";
+import ModalNewProject from "./ModalNewPro";
 const ProjectHeader = ({ activeTab, setActiveTab }: Props) => {
 
   const [isModalNewProjectOpen, setIsModalNewProjectOpen] = useState(false)l
