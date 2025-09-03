@@ -3,11 +3,11 @@ import { error } from "console";
 import { PagesUserlandModule } from "next/dist/server/route-modules/pages/module.compiled";
 
 export interface Project {
-  id?: string;
-  name?: string;
-  description?: string;
-  startdate?: string;
-  enddate?: string;
+  ID: number;
+  Name?: string;
+  Description?: string;
+  StartDate?: string;
+  EndDate?: string;
 
 }
 
@@ -60,11 +60,11 @@ export enum Status {
 }
 // Status string`gorm:"type:varchar(50);check:status IN ('todo','in_progress','review','done')" json:"status"`
 export enum Priority {
-  urgnet = "Urgnet",
+  urgent = "Urgent",
   backlog = "Backlog",
   low = "Low",
   high = "High",
-  medium = "Medium"
+  medium = "Medium",
 }
 
 
@@ -75,7 +75,7 @@ export const api = createApi({
   tagTypes: ["Projects", "Tasks"],
   endpoints: (build) => ({
 
-    getProjects: build.query<Project[], void>({
+    getProjects: build.query<any[], void>({
       query: () => "projects",
       providesTags: ["Projects"],
     }),
