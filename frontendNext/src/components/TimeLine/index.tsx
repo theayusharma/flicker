@@ -30,7 +30,7 @@ const TimeLine = ({ id, setIsModalNewTaskOpen }: Props) => {
         name: task.Title,
         id: task.id,
         type: "task" as TaskTypeItems,
-        progress: task.Points ? (task.Points / 10) * 100 : 0,
+        progress: task.points ? (task.points / 10) * 100 : 0,
         isDisabled: false,
       })) || []
     )
