@@ -46,6 +46,7 @@ func main() {
 	})
 	routes.TaskRoutes(app)
 	routes.ProjectRoutes(app)
+	routes.SearchRoutes(app)
 	database.InitDB()
 
 	port := os.Getenv("PORT")
