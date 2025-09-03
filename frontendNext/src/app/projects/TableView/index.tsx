@@ -2,7 +2,7 @@ import { useGetTasksQuery } from "@/app/reduxstate/api";
 import Header from "@/components/Header";
 import React from "react"
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
-import { columnsStateInitializer } from "@mui/x-data-grid/internals";
+/* import { columnsStateInitializer } from "@mui/x-data-grid/internals"; */
 import { dataGridCN, dataGridSx } from "@/app/lib/utils";
 import { useTheme } from "next-themes";
 type Props = {
@@ -60,7 +60,7 @@ const columns: GridColDef[] = [
     field: "Assignee",
     headerName: "Assignee",
     width: 150,
-    renderCell: (params) => params.value.Username || "Unknown"
+    renderCell: (params) => params.value?.Username || "Unknown"
   },
 ]
 
