@@ -43,22 +43,22 @@ export interface Attachment {
 }
 
 export interface User {
-  userIdd?: number;
-  username: string;
-  email: string;
-  profilePictureUrl?: string;
-  providerId?: string;
-  teamId?: number;
+  UserId?: number;
+  Username: string;
+  Email: string;
+  ProfilePictureURL?: string;
+  ProviderId?: string;
+  TeamId?: number;
 }
 
 export enum Status {
-  todo = "To Do",
-  in_progress = "Work In Progress",
+  todo = "To	Do",
+  in_progress = "Work	In	Progress",
   done = "Completed",
-  review = "Under Review"
+  review = "Under	Review"
 
 }
-// Status string`gorm:"type:varchar(50);check:status IN ('todo','in_progress','review','done')" json:"status"`
+//	Status	string`gorm:"type:varchar(50);check:status	IN	('todo','in_progress','review','done')"	json:"status"`
 export enum Priority {
   urgent = "Urgent",
   backlog = "Backlog",
@@ -67,15 +67,26 @@ export enum Priority {
   medium = "Medium",
 }
 
+export interface SearchResults {
+  task?: Task[],
+  project?: Project[],
+  user?: User[],
+}
 
+export interface Team {
+  teamid: number;
+  teamname: string;
+  product_owner_username?: number;
+  project_manager_username?: number;
+}
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_BACK_URL }),
   reducerPath: 'api',
-  tagTypes: ["Projects", "Tasks"],
+  tagTypes: ["Projects", "Tasks", "Users", "Team"],
   endpoints: (build) => ({
 
-    getProjects: build.query<any[], void>({
+    getProjects: build.query<Project[], void>({
       query: () => "projects",
       providesTags: ["Projects"],
     }),
@@ -104,7 +115,7 @@ export const api = createApi({
 
     createTask: build.mutation<Task, Partial<Task>>({
       query: (task) => ({
-        url: "tasks ",
+        url: "tasks	",
         method: "POST",
         body: task
       }),
@@ -120,8 +131,19 @@ export const api = createApi({
       invalidatesTags: (result, error, { taskId }) => [{
         type: "Tasks", id: taskId
       }],
-    })
+    }),
+    search: build.query<SearchResults, string>({
+      query: (query) => `search?query=${query}`
+    }),
+    getUsers: build.query<User[], string>({
+      query: () => "user",
+      providesTags: ["Users"],
+    }),
+    getTeams: build.query<Team[], void>({
+      query: () => "teams",
+      providesTags: ["Team"],
+    }),
   }),
 })
 
-export const { useGetProjectsQuery, useCreateProjectMutation, useGetTasksQuery, useCreateTaskMutation, useUpdateTaskStatusMutation } = api;
+export const { useGetProjectsQuery, useCreateProjectMutation, useGetTasksQuery, useCreateTaskMutation, useUpdateTaskStatusMutation, useSearchQuery, useGetUsersQuery, useGetTeamsQuery } = api;
