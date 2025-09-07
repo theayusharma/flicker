@@ -8,7 +8,7 @@ type Props = {
 
 const TaskCard = ({ task }: Props) => {
   return (
-    <div className="mb-3 ro classNameuded bg-white p-4 shadow dark:bg-dark-secondary dark:text-white dark:bg-zinc-900 rounded-md">
+    <div className="mb-3 bg-white p-4 shadow dark:text-white dark:bg-zinc-900 rounded-md">
       {task.attachments && task.attachments.length > 0 && (
         <div className="">
           <strong>attachments:</strong>
@@ -46,12 +46,19 @@ const TaskCard = ({ task }: Props) => {
           "No tags"}
       </p>
       <p>
-        <strong>Start Date:</strong> {" "} {task.StartDate ? format(new Date(task.StartDate), "P") : "Not Set"}
+        Start Date: {task.StartDate ? new Date(task.StartDate).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "short",
+          day: "numeric"
+        }) : "Not set"}
       </p>
       <p>
-        <strong>Due Date:</strong> {" "} {task.DueDate ? format(new Date(task.DueDate), "P") : "Not Set"}
-      </p>
-      <p>
+        End Date: {task.EndDate ? new Date(task.EndDate).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "short",
+          day: "numeric"
+        }) : "Not set"}
+      </p>      <p>
         <strong>Author:</strong> {task.Author ? task.Author.UserName : "Unknown"}
       </p>
       <p>
