@@ -81,7 +81,19 @@ export interface Team {
 }
 
 export const api = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_BACK_URL }),
+  baseQuery: fetchBaseQuery({ 
+    baseUrl: process.env.NEXT_PUBLIC_BACK_URL,
+    prepareHeaders: (headers, { getState }) => {
+      // Get user token from session storage or wherever you store it
+      if (typeof window !== 'undefined') {
+        const userToken = localStorage.getItem('userToken');
+        if (userToken) {
+          headers.set('authorization', `Bearer ${userToken}`);
+        }
+      }
+      return headers;
+    },
+  }),
   reducerPath: 'api',
   tagTypes: ["Projects", "Tasks", "Users", "Team"],
   endpoints: (build) => ({

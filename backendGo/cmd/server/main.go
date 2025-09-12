@@ -49,7 +49,10 @@ func main() {
 	routes.SearchRoutes(app)
 	routes.Users(app)
 	routes.Teams(app)
+
 	database.InitDB()
+	db := database.GetDB()
+	routes.SetupAuthRoutes(app, db)
 
 	port := os.Getenv("PORT")
 	if port == "" {

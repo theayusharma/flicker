@@ -11,6 +11,8 @@ import (
 )
 
 func GetTasks(c *fiber.Ctx) error {
+	userID := c.Locals("userID").(uint)
+
 	var project_id = c.Query("projectId")
 	if project_id == "" {
 		return c.Status(400).JSON(fiber.Map{"message": "send a valid projectid broo"})
@@ -19,6 +21,17 @@ func GetTasks(c *fiber.Ctx) error {
 	// taskId, err := strconv.Atoi(task_id)
 	if err != nil {
 		return c.Status(400).JSON(fiber.Map{"message": "invalid projectidddd"})
+	}
+
+	var projectCount int64
+	database.DB.Table("projects").
+		Joins("JOIN project_teams ON projects.project_id = project_teams.project_id").
+		Joins("JOIN teams ON project_teams.team_id = teams.team_id").
+		Joins("JOIN users ON teams.team_id = users.team_id").
+		Where("users.user_id = ? AND projects.project_id = ?", userID, projectId).
+		Count(&projectCount)
+	if projectCount == 0 {
+		return c.Status(403).JSON(fiber.Map{"message": "Access denied to this project"})
 	}
 
 	var tasks []models.Task

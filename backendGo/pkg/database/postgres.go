@@ -25,15 +25,14 @@ func InitDB() {
 	}
 
 	DB, err = gorm.Open(postgres.Open(postgresURI), &gorm.Config{
-DisableForeignKeyConstraintWhenMigrating: true,
+		DisableForeignKeyConstraintWhenMigrating: true,
 	})
 	if err != nil {
 		log.Fatalf("failed to connect to DB: %v", err)
 	}
 
 	DB.Exec("SET CONSTRAINTS ALL DEFERRED")
-	// Correct migration order  : {{}}}}}
- 	err = DB.AutoMigrate(
+	err = DB.AutoMigrate(
 		&models.Team{},
 		&models.User{},
 		&models.Project{},
@@ -48,4 +47,11 @@ DisableForeignKeyConstraintWhenMigrating: true,
 	}
 
 	log.Println("connected to PostgreSQL successfully")
+}
+
+func GetDB() *gorm.DB {
+	if DB == nil {
+		InitDB()
+	}
+	return DB
 }
