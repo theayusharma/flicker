@@ -1,4 +1,4 @@
-import { AlertCircle, AlertOctagon, AlertTriangle, ShieldAlert, Layers3, LockIcon, Home, X, Settings, ChevronDown, ChevronUp, Briefcase, User, Users, Search } from 'lucide-react';
+import { AlertCircle, AlertOctagon, AlertTriangle, ShieldAlert, Layers3, LockIcon, Home, X, Settings, ChevronDown, ChevronUp, Briefcase, User, Users, Search, LinkIcon } from 'lucide-react';
 import Image from 'next/image';
 import React, { useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/app/redux'
@@ -8,7 +8,6 @@ import { setIsSiderbarCollapsed } from '@/app/reduxstate/index'
 import { useGetProjectsQuery } from '@/app/reduxstate/api';
 const Sidebar = () => {
   const [showProjects, setShowProjects] = useState(true);
-  const [showPriority, setShowPriority] = useState(true);
 
 
 
@@ -27,7 +26,7 @@ const Sidebar = () => {
       <div className="flex h-[100%] w-full flex-col justify-start">
         <div className="z-50 flex min-h-[56px] w-64 items-center justify-between bg-white px-6 pt-3 dark:bg-black">
           <div className="text-xl font-bold text-gray-900 dark:text-white">
-            list
+            Flicker
           </div>
           {isSiderbarCollapsed ? null : (<button className="py-3" onClick={() => {
             dispatch(setIsSiderbarCollapsed(!isSiderbarCollapsed))
@@ -36,17 +35,21 @@ const Sidebar = () => {
           </button>)}
         </div>
         {/* team */}
-        <div className="flex items-center gap-5 border-y-[1.5px] border-gray-200 px-8 py-4 dark:border-gray-700">
-          <Image src="/logo.png" alt="logo" width={40} height={40} />
-          <div>
-            <h3 className='text-md font-bold tracking-widest dark:text-gray-200'>
-              FLICKER
-            </h3>
-            <div className='mt-1 flex itmes-start gap-2'>
-              <LockIcon className='mt-[0.1rem] size-3 text-gray-500 dark:text-gray-400' />
-              <p className='text-sm text-gray-500'>Private</p>
+        <div className="flex items-center gap-2 border-y-[1.5px] border-gray-200 px-2 py-4 dark:border-gray-700">
+          <Image src="/logo.webp" alt="logo" width={100} height={40} className='rounded' />
+          <a href="https://github.com/theayusharma" target='_blank' >
+            <div className='text-center'>
+              <h3 className='text-md font-bold tracking-widest dark:text-gray-200'>
+                About Me:
+              </h3>
+              <h3 className='text-md font-bold tracking-widest dark:text-gray-200'>
+                theayusharma
+              </h3>
+              <div className='flex justify-center'>
+                <LinkIcon size={20} className='dark:text-white' />
+              </div>
             </div>
-          </div>
+          </a>
 
         </div>
         {/* navbar links */}
@@ -55,7 +58,7 @@ const Sidebar = () => {
           <Sidebarlink icon={Briefcase} label="Timeline" href="/timeline" />
           <Sidebarlink icon={Search} label="Search" href="/search" />
           <Sidebarlink icon={Settings} label="Settings" href="/settings" />
-          <Sidebarlink icon={User} label="Users" href="/users" />
+          <Sidebarlink icon={User} label="Users" href="/user" />
           <Sidebarlink icon={Users} label="Teams" href="/teams" />
 
         </nav>
@@ -77,29 +80,29 @@ const Sidebar = () => {
             href={`/projects/${project.ID}`}
           />
         ))}
-
-        <button onClick={() => setShowPriority((prev) => !prev)}
-          className="flex w-full items-center text-gray-500 px-8 py-3">
-          <span>Priority</span>
-          {showPriority ? <ChevronUp className="size-5" /> :
-            <ChevronDown className="size-5" />}
-
-        </button>
-        {showPriority && (
-          <>
-
-            <Sidebarlink icon={AlertCircle} label="Urgent" href="/priority/urgent" />
-
-            <Sidebarlink icon={ShieldAlert} label="High" href="/priority/high" />
-
-            <Sidebarlink icon={AlertTriangle} label="Medium" href="/priority/medium" />
-
-            <Sidebarlink icon={AlertOctagon} label="Low" href="/priority/low" />
-
-            <Sidebarlink icon={Layers3} label="Backlog" href="/priority/backlog" />
-
-          </>
-        )}
+        {/**/}
+        {/* <button onClick={() => setShowPriority((prev) => !prev)} */}
+        {/*   className="flex w-full items-center text-gray-500 px-8 py-3"> */}
+        {/*   <span>Priority</span> */}
+        {/*   {showPriority ? <ChevronUp className="size-5" /> : */}
+        {/*     <ChevronDown className="size-5" />} */}
+        {/**/}
+        {/* </button> */}
+        {/* {showPriority && ( */}
+        {/*   <> */}
+        {/**/}
+        {/*     <Sidebarlink icon={AlertCircle} label="Urgent" href="/priority/urgent" /> */}
+        {/**/}
+        {/*     <Sidebarlink icon={ShieldAlert} label="High" href="/priority/high" /> */}
+        {/**/}
+        {/*     <Sidebarlink icon={AlertTriangle} label="Medium" href="/priority/medium" /> */}
+        {/**/}
+        {/*     <Sidebarlink icon={AlertOctagon} label="Low" href="/priority/low" /> */}
+        {/**/}
+        {/*     <Sidebarlink icon={Layers3} label="Backlog" href="/priority/backlog" /> */}
+        {/**/}
+        {/*   </> */}
+        {/* )} */}
       </div>
     </div>
   )

@@ -2,5 +2,8 @@
 import SimpleTest from './testroute';
 
 export default function TestPage() {
-  return <SimpleTest />;
+  return <div>
+
+    <SimpleTest />;
+  </div>
 }

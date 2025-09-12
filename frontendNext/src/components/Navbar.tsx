@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useAppDispatch, useAppSelector } from '@/app/redux'
 import { setIsDarkMode, setIsSiderbarCollapsed } from '@/app/reduxstate'
 import { useTheme } from 'next-themes'
+import Image from 'next/image'
 
 const Navbar = () => {
 
@@ -18,21 +19,22 @@ const Navbar = () => {
 
   return (
     <div className='flex items-center justify-between bg-white px-4 py-3 dark:bg-black w-auto '>
-      {/*serchbar*/}
-      <div className='flex items-center gap-8'>
+      <div className='flex items-center gap-5'>
         {!isSiderbarCollapsed ? null : (
           <button onClick={() => dispatch(setIsSiderbarCollapsed(!isSiderbarCollapsed))}>
             <Menu className='size-8 dark:text-white hover:text-emerald-500 hover:dark:text-emerald-400' />
           </button>
         )}
-        <div className='relative flex h-min w-[200px]'>
-          <Search className="absolute left-[4px] top-1/2 mr-2 size-5 -translate-y-1/2 transform cursor-pointer dark:text-white hover:text-emerald-500 hover:dark:text-emerald-400 " />
-          <input
-            className='w-full rounded border-none bg-gray-100 p-2 pl-8 placeholder-gray-500 focus:border-transparent focus:outline-none dark:bg-gray-700 dark:text-white dark:placeholder-white'
-            type='search'
-            placeholder='Search...'
-          />
-        </div>
+        {/* <div className='relative flex flex-row h-min w-[200px]'> */}
+        <Link href='/'>
+          <Image src="/logo.webp" alt="logo" width={50} height={50} className='rounded' />
+        </Link>
+        <Link href='/'>
+          <div className="text-xl font-bold text-gray-900 dark:text-white">
+            Flicker
+          </div>
+        </Link>
+        {/* </div> */}
       </div>
       {/* icons */}
       <div className='flex gap-5'>

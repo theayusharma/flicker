@@ -17,7 +17,7 @@ const ProjectHeader = ({ activeTab, setActiveTab }: Props) => {
         onClose={() => setIsModalNewProjectOpen(false)}
       />
       <div className="pb-1 pt-1 lg:pb-2 lg:pt-2 flex justify-between">
-        <Header name="Flicker" />
+        {/* <Header name="Flicker" /> */}
         <Header name=""
           buttonComponent={
             <button
