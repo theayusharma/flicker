@@ -1,4 +1,4 @@
-import { AlertCircle, AlertOctagon, AlertTriangle, ShieldAlert, Layers3, LockIcon, Home, X, Settings, ChevronDown, ChevronUp, Briefcase, User, Users, Search, LinkIcon } from 'lucide-react';
+import { Home, X, Settings, ChevronDown, ChevronUp, Briefcase, User, Users, Search, LinkIcon } from 'lucide-react';
 import Image from 'next/image';
 import React, { useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/app/redux'

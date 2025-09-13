@@ -2,10 +2,10 @@
 
 import { GridColDef } from "@mui/x-data-grid"
 import { useAppSelector } from "../redux"
-import { Priority, Project, Status, Task, useGetProjectsQuery, useGetTasksQuery } from "../reduxstate/api"
+import { Priority, Project, Task, useGetProjectsQuery, useGetTasksQuery } from "../reduxstate/api"
 import Header from "@/components/Header"
 import { ResponsiveContainer, BarChart, PieChart, Pie, Cell, Tooltip, CartesianGrid, XAxis, YAxis, Legend, Bar } from "recharts";
-import {DataGrid} from "@mui/x-data-grid"
+import { DataGrid } from "@mui/x-data-grid"
 import { dataGridCN, dataGridSx } from "../lib/utils"
 const HomePage = () => {
 
@@ -23,7 +23,6 @@ const HomePage = () => {
   const priorityCount = tasks.reduce((acc: Record<string, number>, task:
     Task) => {
     // const { priority } = task
-    // @ts-ignore
     const priority = task.Priority || "low"
     acc[priority as Priority] = (acc[priority as Priority] || 0) + 1;
 
@@ -138,19 +137,19 @@ const HomePage = () => {
             <h3 className="mb-4 text-lg font-semibold dark:text-white">
               Your Tasks
             </h3>
-           <div style = {{height:400, width : "100%"}}>
-<DataGrid 
-rows={tasks}
+            <div style={{ height: 400, width: "100%" }}>
+              <DataGrid
+                rows={tasks}
                 columns={taskCols}
                 checkboxSelection
                 loading={taskLoading}
-                getRowClassName={()=>"data-grid-row"}
-getCellClassName={()=> "data-grid-col"}
+                getRowClassName={() => "data-grid-row"}
+                getCellClassName={() => "data-grid-col"}
                 className={dataGridCN}
                 sx={dataGridSx(isDarkMode)}
               />
-            </div> 
             </div>
+          </div>
 
         </div>
       </div>
