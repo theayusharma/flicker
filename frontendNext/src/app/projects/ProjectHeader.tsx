@@ -8,7 +8,7 @@ type Props = {
 import ModalNewProject from "./ModalNewPro";
 const ProjectHeader = ({ activeTab, setActiveTab }: Props) => {
 
-  const [isModalNewProjectOpen, setIsModalNewProjectOpen] = useState(false)l
+  const [isModalNewProjectOpen, setIsModalNewProjectOpen] = useState(false)
 
   return (
     <div className="px-4 xl:px-6 flex flex-col">
