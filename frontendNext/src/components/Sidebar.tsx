@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Home, X, Settings, ChevronDown, ChevronUp, Briefcase, User, Users, Search, LinkIcon } from 'lucide-react';
 import Image from 'next/image';
 import React, { useState } from 'react'

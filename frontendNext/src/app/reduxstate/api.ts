@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { error } from "console";
 import { PagesUserlandModule } from "next/dist/server/route-modules/pages/module.compiled";

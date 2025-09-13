@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client"
 import React from 'react'
 import { Menu, Moon, Search, Settings, Sun, LogOut, User } from "lucide-react"

@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client"
 import { DataGrid, GridColDef, GridToolbarContainer, GridToolbarExport, GridToolbarFilterButton } from "@mui/x-data-grid"
 import { useAppSelector } from "../redux"

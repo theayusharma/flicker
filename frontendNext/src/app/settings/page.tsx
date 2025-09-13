@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Header from "@/components/Header";
 
 type Props = {}

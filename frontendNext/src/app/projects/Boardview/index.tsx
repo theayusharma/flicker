@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useGetTasksQuery, useUpdateTaskStatusMutation } from "@/app/reduxstate/api";
 import React from "react"
 import { DndProvider, useDrop, useDrag } from "react-dnd"

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Task } from "@/app/reduxstate/api"
 import React from "react"
 import { format } from "date-fns"

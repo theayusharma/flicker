@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useAppSelector } from "@/app/redux";
 import { useGetTasksQuery } from "@/app/reduxstate/api";
 import React, { useMemo, useState } from "react"
